@@ -20,19 +20,19 @@ const PrivateRoute = ({ isAuthenticated, ...props }) => {
     <>
       <Header />
       <Outlet />
-    </> : <Navigate replace to='/account' />
+    </> : <Navigate replace to='/account' />;
 };
 
 function App() {
 
-  const [isAuthenticated, isUserAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     <DataProvider>
       <BrowserRouter>
         <Box style={{ marginTop: 64 }}>
           <Routes>
-            <Route path='/account' element={<Login isUserAuthenticated={isUserAuthenticated} />} />
+            <Route path='/account' element={<Login isUserAuthenticated={setIsAuthenticated} />} />
             
             <Route path='/' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
               <Route path='/' element={<Home />} />
